@@ -79,8 +79,8 @@ func version(argv []string) {
 		return
 	}
 
-	version := fmt.Sprintf("%s %s-%s", AppName, Version, GitCommit)
-	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", version, LicenseInfo)
+	v := fmt.Sprintf("%s %s-%s", AppName, Version, GitCommit)
+	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", v, LicenseInfo)
 	if err != nil {
 		panic(err)
 	}
