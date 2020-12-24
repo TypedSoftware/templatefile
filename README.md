@@ -20,6 +20,7 @@ This is a standalone CLI to [the Terraform `templatefile` function][1].
 printf '%s\n' 'Hello, ${name}!' > hello.tmpl
 printf '%s\n' 'name: world' > hello.yml
 templatefile hello.tmpl hello.yml
+# Hello, world!
 ```
 
 Both YAML and JSON files work. The root of the file must be an object.
