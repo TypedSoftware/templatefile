@@ -9,6 +9,9 @@ import (
 // AppName is the name of the built binary.
 const AppName = "templatefile"
 
+// LicenseInfo is the license information for the app.
+const LicenseInfo = "License MPL-2.0 <https://www.mozilla.org/en-US/MPL/2.0/>"
+
 // Version is the application version. This is filled in by the compiler.
 var Version = "0.0.0"
 
@@ -77,8 +80,7 @@ func version(argv []string) {
 	}
 
 	version := fmt.Sprintf("%s %s-%s", AppName, Version, GitCommit)
-	license := "License MPL-2.0 <https://www.mozilla.org/en-US/MPL/2.0/>"
-	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", version, license)
+	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", version, LicenseInfo)
 	if err != nil {
 		panic(err)
 	}
