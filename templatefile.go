@@ -125,6 +125,10 @@ func templatefile(baseDir string, path string, vars string) (string, error) {
 		return terraformFunctions
 	})
 	data, err := ctyyaml.YAMLDecodeFunc.Call([]cty.Value{cty.StringVal(vars)})
+	if err != nil {
+		return "", err
+	}
+
 	args := []cty.Value{
 		cty.StringVal(path),
 		data,
