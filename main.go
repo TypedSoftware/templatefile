@@ -23,7 +23,6 @@ var UsageText = fmt.Sprintf("Usage: %s [-v] path vars", AppName)
 
 func main() {
 	argv := os.Args[1:]
-	baseDir, _ := os.Getwd()
 
 	help(argv)
 	version(argv)
@@ -36,7 +35,7 @@ func main() {
 	vars, err := ioutil.ReadFile(argv[1])
 	pp(err)
 
-	out, err := templatefile(baseDir, argv[0], string(vars))
+	out, err := templatefile(".", argv[0], string(vars))
 	pp(err)
 
 	_, err = fmt.Fprintf(os.Stdout, "%s", out)
