@@ -5,7 +5,7 @@ set -E
 set -u
 set -o pipefail
 
-declare -r ref="${GITHUB_REF#refs/heads/}"
+declare -r ref="${GITHUB_REF#refs/tags/}"
 declare -r log="docs/changelogs/${ref}.md"
 declare -r title="$(head -n 1 "${log}")"
 

@@ -5,7 +5,7 @@ set -E
 set -u
 set -o pipefail
 
-declare -r ref="${GITHUB_REF#refs/heads/}"
+declare -r ref="${GITHUB_REF#refs/tags/}"
 declare -r -x XZ_OP="-9"
 
 gh release upload --clobber "${ref}" "templatefile-${ref}-${GOOS}-${GOARCH}.tar.xz"
