@@ -64,7 +64,7 @@ func help(argv []string) {
 }
 
 func version(argv []string) {
-	if !sliceContains(argv, "--version") {
+	if !sliceContains(argv, "--version") && !sliceContains(argv, "-v") {
 		return
 	}
 
