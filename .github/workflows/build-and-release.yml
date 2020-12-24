@@ -43,3 +43,11 @@ jobs:
           GOOS: ${{ matrix.GOOS }}
           GOARCH: ${{ matrix.GOARCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  no-more-jobs:
+    name: No more jobs
+    runs-on: ubuntu-20.04
+    needs:
+      - build
+    steps:
+      - name: 😴
+        run: printf '%s\n' 'No more jobs!'

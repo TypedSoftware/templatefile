@@ -18,3 +18,11 @@ jobs:
       - name: go test
         run: |
           go test
+  no-more-jobs:
+    name: No more jobs
+    runs-on: ubuntu-20.04
+    needs:
+      - fmt-test
+    steps:
+      - name: 😴
+        run: printf '%s\n' 'No more jobs!'
