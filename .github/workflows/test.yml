@@ -1,0 +1,28 @@
+name: Test
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  fmt-test:
+    name: fmt and test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Go
+        run: .github/scripts/install-go
+      - name: go fmt
+        run: |
+          test -z "$(go fmt)"
+      - name: go test
+        run: |
+          go test
+  no-more-jobs:
+    name: No more jobs
+    runs-on: ubuntu-20.04
+    needs:
+      - fmt-test
+    steps:
+      - name: 😴
+        run: printf '%s\n' 'No more jobs!'

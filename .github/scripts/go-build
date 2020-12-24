@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+set -E
+set -u
+set -o pipefail
+
+declare -r ref="${GITHUB_REF#refs/heads/}"
+declare ext=""
+
+if [[ $GOOS == "windows" ]]
+then
+	ext=".exe"
+fi
+
+go build
+tar --verbose --create --xz --file "templatefile-${ref}-${GOOS}-${GOARCH}.tar.xz" "templatefile${ext}"
