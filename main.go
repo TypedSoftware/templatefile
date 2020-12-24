@@ -16,6 +16,10 @@ func main() {
 	version(argv)
 	showUsage(argv)
 
+	if argv[1] == "-" {
+		argv[1] = os.Stdin.Name()
+	}
+
 	vars, err := ioutil.ReadFile(argv[1])
 	if err != nil {
 		panic(err)
