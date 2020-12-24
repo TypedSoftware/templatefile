@@ -1,0 +1,30 @@
+name: Test
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  fmt:
+    name: go fmt
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Go
+        run: .github/scripts/install-go
+      - name: Check *.go
+        run: |
+          test -z "$(go fmt)"
+  tests:
+    name: Tests
+    runs-on: ubuntu-20.04
+    needs:
+      - fmt
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Go
+        run: .github/scripts/install-go
+      - name: Run tests
+        run: |
+          go test

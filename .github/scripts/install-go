@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+set -E
+set -u
+set -o pipefail
+
+declare -r version="go1.16beta1.linux-amd64"
+
+cd "$(mktemp -d)"
+curl --silent --show-error --location --remote-name "https://golang.org/dl/${version}.tar.gz"
+tar --extract --gunzip --file "${version}.tar.gz"
+
+cd 'go'
+printf '%s\n' "GOROOT=${PWD}" >> $GITHUB_ENV
+printf '%s\n' "${PWD}/bin" >> $GITHUB_PATH
+
+"${PWD}/bin/go" version

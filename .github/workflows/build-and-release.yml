@@ -1,0 +1,45 @@
+name: Build & release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Create Release
+        run: .github/scripts/create-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build:
+    name: Build & upload
+    runs-on: ubuntu-20.04
+    needs:
+      - release
+    strategy:
+      max-parallel: 42
+      matrix:
+        include:
+          - GOOS: darwin
+            GOARCH: arm64
+          - GOOS: linux
+            GOARCH: amd64
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Go
+        run: .github/scripts/install-go
+      - name: go build ${{ matrix.GOOS }}/${{ matrix.GOARCH }}
+        run: .github/scripts/go-build
+        env:
+          GOOS: ${{ matrix.GOOS }}
+          GOARCH: ${{ matrix.GOARCH }}
+      - name: Upload build artifact
+        run: .github/scripts/upload-artifacts
+        env:
+          GOOS: ${{ matrix.GOOS }}
+          GOARCH: ${{ matrix.GOARCH }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
