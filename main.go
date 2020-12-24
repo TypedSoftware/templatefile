@@ -30,7 +30,7 @@ func main() {
 		panic(err)
 	}
 
-	_, err = fmt.Fprintf(os.Stdout, "%s\n", out)
+	_, err = fmt.Fprintf(os.Stdout, "%s", out)
 	if err != nil {
 		panic(err)
 	}
