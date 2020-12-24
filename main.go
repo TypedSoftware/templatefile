@@ -66,7 +66,7 @@ func version(argv []string) {
 		return
 	}
 
-	version := "templatefile version 0.0.1"
+	version := "templatefile version 0.0.2"
 	license := "License MPL-2.0 <https://www.mozilla.org/en-US/MPL/2.0/>"
 	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", version, license)
 	if err != nil {
