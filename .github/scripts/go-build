@@ -6,6 +6,7 @@ set -u
 set -o pipefail
 
 declare -r ref="${GITHUB_REF#refs/tags/}"
+declare -r ldflags="-X main.Version=${ref} -X main.GitCommit=${GITHUB_SHA:0:8}"
 declare ext=""
 
 if [[ $GOOS == "windows" ]]
@@ -13,5 +14,5 @@ then
 	ext=".exe"
 fi
 
-go build
+go build -ldflags="${ldflags}"
 tar --verbose --create --xz --file "templatefile-${ref}-${GOOS}-${GOARCH}.tar.xz" "templatefile${ext}"

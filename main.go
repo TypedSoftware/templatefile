@@ -6,7 +6,17 @@ import (
 	"os"
 )
 
-const UsageText = "Usage: templatefile [-v] path vars"
+// AppName is the name of the built binary.
+const AppName = "templatefile"
+
+// Version is the application version. This is filled in by the compiler.
+var Version = "0.0.0"
+
+// GitCommit is the commit that was build. This is filled in by the compiler.
+var GitCommit = "HEAD"
+
+// UsageText is the help text for the root command.
+var UsageText = fmt.Sprintf("Usage: %s [-v] path vars", AppName)
 
 func main() {
 	argv := os.Args[1:]
@@ -66,7 +76,7 @@ func version(argv []string) {
 		return
 	}
 
-	version := "templatefile version 0.0.2"
+	version := fmt.Sprintf("%s %s-%s", AppName, Version, GitCommit)
 	license := "License MPL-2.0 <https://www.mozilla.org/en-US/MPL/2.0/>"
 	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", version, license)
 	if err != nil {
