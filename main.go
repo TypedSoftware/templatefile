@@ -34,20 +34,13 @@ func main() {
 	}
 
 	vars, err := ioutil.ReadFile(argv[1])
-	if err != nil {
-		panic(err)
-	}
+	pp(err)
 
 	out, err := templatefile(baseDir, argv[0], string(vars))
-	if err != nil {
-		panic(err)
-	}
+	pp(err)
 
 	_, err = fmt.Fprintf(os.Stdout, "%s", out)
-	if err != nil {
-		panic(err)
-	}
-
+	pp(err)
 	os.Exit(0)
 }
 
@@ -67,10 +60,7 @@ func help(argv []string) {
 	}
 
 	_, err := fmt.Fprintf(os.Stdout, "%s\n\n%s\n", "Render a Terraform template file", UsageText)
-	if err != nil {
-		panic(err)
-	}
-
+	pp(err)
 	os.Exit(0)
 }
 
@@ -81,10 +71,7 @@ func version(argv []string) {
 
 	v := fmt.Sprintf("%s %s-%s", AppName, Version, GitCommit)
 	_, err := fmt.Fprintf(os.Stdout, "%s\n%s\n", v, LicenseInfo)
-	if err != nil {
-		panic(err)
-	}
-
+	pp(err)
 	os.Exit(0)
 }
 
@@ -94,6 +81,16 @@ func showUsage(argv []string) {
 	}
 
 	_, err := fmt.Fprintf(os.Stderr, "%s\n", UsageText)
+	pp(err)
+	os.Exit(1)
+}
+
+func pp(err error) {
+	if err == nil {
+		return
+	}
+
+	_, err = fmt.Fprintf(os.Stderr, "%s\n", err.Error())
 	if err != nil {
 		panic(err)
 	}
