@@ -24,8 +24,8 @@ var UsageText = fmt.Sprintf("Usage: %s [-v] path vars", AppName)
 func main() {
 	argv := os.Args[1:]
 
-	help(argv)
-	version(argv)
+	showHelp(argv)
+	showVersion(argv)
 	showUsage(argv)
 
 	if argv[1] == "-" {
@@ -53,7 +53,7 @@ func sliceContains(haystack []string, needle string) bool {
 	return false
 }
 
-func help(argv []string) {
+func showHelp(argv []string) {
 	if !sliceContains(argv, "--help") {
 		return
 	}
@@ -63,7 +63,7 @@ func help(argv []string) {
 	os.Exit(0)
 }
 
-func version(argv []string) {
+func showVersion(argv []string) {
 	if !sliceContains(argv, "--version") && !sliceContains(argv, "-v") {
 		return
 	}
