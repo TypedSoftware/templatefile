@@ -53,6 +53,7 @@ func sliceContains(haystack []string, needle string) bool {
 	return false
 }
 
+// showHelp prints the help text to stdout and exits.
 func showHelp(argv []string) {
 	if !sliceContains(argv, "--help") {
 		return
@@ -63,6 +64,7 @@ func showHelp(argv []string) {
 	os.Exit(0)
 }
 
+// showVersion prints the version information to stdout and exits.
 func showVersion(argv []string) {
 	if !sliceContains(argv, "--version") && !sliceContains(argv, "-v") {
 		return
@@ -74,6 +76,7 @@ func showVersion(argv []string) {
 	os.Exit(0)
 }
 
+// showUsage prints the usage text to stderr and exits with an error exit status.
 func showUsage(argv []string) {
 	if len(argv) == 2 {
 		return
@@ -84,6 +87,8 @@ func showUsage(argv []string) {
 	os.Exit(1)
 }
 
+// pp prints the given error to stderr and exits with an error exit status.
+// If printing to stderr fails, panic.
 func pp(err error) {
 	if err == nil {
 		return
