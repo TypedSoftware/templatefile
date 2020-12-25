@@ -6,7 +6,7 @@ set -u
 set -o pipefail
 
 declare -r ref="${GITHUB_REF#refs/tags/}"
-declare -r ldflags="-X main.Version=${ref} -X main.GitCommit=${GITHUB_SHA:0:8}"
+declare -r ldflags="-s -w -X main.Version=${ref} -X main.GitCommit=${GITHUB_SHA:0:8}"
 declare ext=""
 
 if [[ $GOOS == "windows" ]]
