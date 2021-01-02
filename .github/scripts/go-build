@@ -5,6 +5,7 @@ set -E
 set -u
 set -o pipefail
 
+declare -r -x CGO_ENABLED=0
 declare -r ref="${GITHUB_REF#refs/tags/}"
 declare -r ldflags="-s -w -X main.Version=${ref} -X main.GitCommit=${GITHUB_SHA:0:8}"
 declare ext=""
