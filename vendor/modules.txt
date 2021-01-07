@@ -16,13 +16,13 @@ github.com/hashicorp/errwrap
 github.com/hashicorp/go-multierror
 # github.com/hashicorp/go-uuid v1.0.1
 github.com/hashicorp/go-uuid
-# github.com/hashicorp/hcl/v2 v2.8.1
+# github.com/hashicorp/hcl/v2 v2.8.2
 ## explicit
 github.com/hashicorp/hcl/v2
 github.com/hashicorp/hcl/v2/ext/customdecode
 github.com/hashicorp/hcl/v2/ext/tryfunc
 github.com/hashicorp/hcl/v2/hclsyntax
-# github.com/hashicorp/terraform v0.14.3
+# github.com/hashicorp/terraform v0.14.4
 ## explicit
 github.com/hashicorp/terraform/lang/funcs
 github.com/hashicorp/terraform/tfdiags
