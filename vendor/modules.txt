@@ -22,7 +22,7 @@ github.com/hashicorp/hcl/v2
 github.com/hashicorp/hcl/v2/ext/customdecode
 github.com/hashicorp/hcl/v2/ext/tryfunc
 github.com/hashicorp/hcl/v2/hclsyntax
-# github.com/hashicorp/terraform v0.14.3
+# github.com/hashicorp/terraform v0.14.10
 ## explicit
 github.com/hashicorp/terraform/lang/funcs
 github.com/hashicorp/terraform/tfdiags
