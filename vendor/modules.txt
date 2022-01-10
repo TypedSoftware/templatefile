@@ -36,7 +36,7 @@ github.com/pmezard/go-difflib/difflib
 ## explicit
 github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
-# github.com/zclconf/go-cty v1.8.1
+# github.com/zclconf/go-cty v1.10.0
 ## explicit
 github.com/zclconf/go-cty/cty
 github.com/zclconf/go-cty/cty/convert
