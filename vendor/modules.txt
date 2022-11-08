@@ -45,7 +45,7 @@ github.com/zclconf/go-cty/cty/function/stdlib
 github.com/zclconf/go-cty/cty/gocty
 github.com/zclconf/go-cty/cty/json
 github.com/zclconf/go-cty/cty/set
-# github.com/zclconf/go-cty-yaml v1.0.2
+# github.com/zclconf/go-cty-yaml v1.0.3
 ## explicit
 github.com/zclconf/go-cty-yaml
 # golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
