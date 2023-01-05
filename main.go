@@ -32,8 +32,14 @@ func main() {
 		argv[1] = os.Stdin.Name()
 	}
 
-	vars, err := ioutil.ReadFile(argv[1])
-	pp(err)
+	var vars []byte
+	if _, err := os.Stat(argv[1]); err == nil {
+		out, err := ioutil.ReadFile(argv[1])
+		pp(err)
+		vars = out
+	} else {
+		vars = []byte(argv[1])
+	}
 
 	out, err := templatefile(".", argv[0], string(vars))
 	pp(err)
