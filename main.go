@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/TypedSoftware/templatefile/templatefile"
 	"io/ioutil"
 	"os"
 )
@@ -42,7 +41,7 @@ func main() {
 		vars = []byte(argv[1])
 	}
 
-	out, err := templatefile.New(".", argv[0], string(vars))
+	out, err := templatefile(".", argv[0], string(vars))
 	pp(err)
 
 	_, err = fmt.Fprintf(os.Stdout, "%s", out)
