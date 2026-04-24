@@ -7,7 +7,8 @@ set -o pipefail
 
 declare -r ref="${GITHUB_REF#refs/tags/}"
 declare -r log="docs/changelogs/${ref}.md"
-declare -r title="$(head -n 1 "${log}")"
+title="$(head -n 1 "${log}")"
+declare -r title
 
 gh release create "${ref}" \
   --title "${title### }" \
