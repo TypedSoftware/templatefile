@@ -6,7 +6,7 @@ on:
 jobs:
   fmt-test:
     name: fmt and test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
           go test
   no-more-jobs:
     name: No more jobs
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs:
       - fmt-test
     steps:
