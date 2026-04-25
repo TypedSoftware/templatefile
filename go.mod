@@ -3,7 +3,7 @@ module github.com/TypedSoftware/templatefile
 go 1.25.9
 
 require (
-	github.com/hashicorp/hcl/v2 v2.10.0
+	github.com/hashicorp/hcl/v2 v2.24.0
 	github.com/hashicorp/terraform v0.14.10
 	github.com/stretchr/testify v1.11.1
 	github.com/zclconf/go-cty v1.18.1
@@ -14,7 +14,6 @@ require (
 	al.essio.dev/pkg/shellescape v1.5.1 // indirect
 	github.com/agext/levenshtein v1.2.2 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
-	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/bmatcuk/doublestar v1.1.5 // indirect
 	github.com/charmbracelet/x/term v0.2.2 // indirect
@@ -35,7 +34,7 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/mitchellh/go-wordwrap v1.0.0 // indirect
+	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/spf13/afero v1.15.0 // indirect
