@@ -19,7 +19,7 @@ In short:
 
 Normally, your report will be acknowledged within 5 days and you will receive a more detailed response to your report within 10 days. These timelines are best-effort.
 
-Thiss project does not have a bug bounty program.
+This project does not have a bug bounty program.
 
 Security vulnerabilities in dependencies should be reported to their respective maintainers.
 
