@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/hashicorp/hcl/v2/ext/tryfunc"
 	"github.com/hashicorp/terraform/lang/funcs"
 	ctyyaml "github.com/zclconf/go-cty-yaml"
@@ -138,5 +140,8 @@ func templatefile(baseDir string, path string, vars string) (string, error) {
 		return "", err
 	}
 
-	return res.AsString(), err
+	if res.Type() != cty.String {
+		return "", fmt.Errorf("template result is %s, not string", res.Type().FriendlyName())
+	}
+	return res.AsString(), nil
 }
