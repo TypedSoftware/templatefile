@@ -1,6 +1,6 @@
 module github.com/TypedSoftware/templatefile
 
-go 1.16
+go 1.25.9
 
 require (
 	github.com/hashicorp/hcl/v2 v2.10.0
