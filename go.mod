@@ -7,7 +7,7 @@ require (
 	github.com/hashicorp/terraform v0.14.10
 	github.com/stretchr/testify v1.11.1
 	github.com/zclconf/go-cty v1.18.1
-	github.com/zclconf/go-cty-yaml v1.0.2
+	github.com/zclconf/go-cty-yaml v1.2.0
 )
 
 require (
