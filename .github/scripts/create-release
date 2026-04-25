@@ -12,4 +12,5 @@ declare -r title
 
 gh release create "${ref}" \
   --title "${title### }" \
-  --notes "$(tail -n +3 "${log}")"
+  --notes "$(tail -n +3 "${log}")" \
+  templatefile-*.tar.xz

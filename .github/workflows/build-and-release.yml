@@ -5,59 +5,40 @@ on:
       - 'v*'
 jobs:
   release:
-    name: Create GitHub Release
+    name: Build, attest & release
     runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Create Release
-        run: .github/scripts/create-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  build:
-    name: Build & upload
-    runs-on: ubuntu-24.04
-    needs:
-      - release
     permissions:
       contents: write
       id-token: write
       attestations: write
-    strategy:
-      max-parallel: 42
-      matrix:
-        include:
-          - GOOS: darwin
-            GOARCH: arm64
-          - GOOS: linux
-            GOARCH: amd64
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Go
         run: .github/scripts/install-go
-      - name: go build ${{ matrix.GOOS }}/${{ matrix.GOARCH }}
+      - name: go build darwin/arm64
         run: .github/scripts/go-build
         env:
-          GOOS: ${{ matrix.GOOS }}
-          GOARCH: ${{ matrix.GOARCH }}
+          GOOS: darwin
+          GOARCH: arm64
+      - name: go build linux/amd64
+        run: .github/scripts/go-build
+        env:
+          GOOS: linux
+          GOARCH: amd64
       - name: Generate signed build provenance attestations
         uses: actions/attest-build-provenance@v2
         with:
-          subject-path: 'templatefile-${{ github.ref_name }}-${{ matrix.GOOS }}-${{ matrix.GOARCH }}.tar.xz'
-      - name: Upload build artifact
-        run: .github/scripts/upload-artifacts
+          subject-path: 'templatefile-${{ github.ref_name }}-*.tar.xz'
+      - name: Create release
+        run: .github/scripts/create-release
         env:
-          GOOS: ${{ matrix.GOOS }}
-          GOARCH: ${{ matrix.GOARCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   no-more-jobs:
     name: No more jobs
     runs-on: ubuntu-24.04
     needs:
-      - build
+      - release
     steps:
       - name: 😴
         run: printf '%s\n' 'No more jobs!'
