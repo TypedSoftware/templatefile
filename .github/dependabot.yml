@@ -6,10 +6,12 @@ updates:
     schedule:
       interval: "daily"
     labels: [ ]
+    cooldown:
+      default-days: 7
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 3
+      default-days: 7
     labels: [ ]
