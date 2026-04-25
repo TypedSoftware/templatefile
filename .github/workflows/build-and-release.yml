@@ -7,6 +7,8 @@ jobs:
   release:
     name: Create GitHub Release
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
