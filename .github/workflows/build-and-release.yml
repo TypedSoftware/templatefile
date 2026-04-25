@@ -3,17 +3,20 @@ on:
   push:
     tags:
       - 'v*'
-permissions:
-  contents: read
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   release:
     name: Build, attest & release
     runs-on: ubuntu-24.04
     permissions:
-      contents: write
-      id-token: write
-      attestations: write
+      contents: write     # Required by `gh release create` & read to clone the repo
+      id-token: write     # Required to mint a Sigstore OIDC token (actions/attest-build-provenance)
+      attestations: write # Required to upload the signed attestation (actions/attest-build-provenance)
     steps:
       - name: Harden the runner
         uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0

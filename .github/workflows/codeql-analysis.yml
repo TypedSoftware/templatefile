@@ -20,17 +20,20 @@ on:
   schedule:
     - cron: '33 9 * * 1'
 
-permissions:
-  contents: read
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-24.04
     permissions:
-      security-events: write
-      actions: read
-      contents: read
+      contents: read         # Required to clone the repo
+      actions: read          # Required to read workflow metadata
+      security-events: write # Required to publish SARIF results to code scanning (codeql-action/upload-sarif)
 
     strategy:
       fail-fast: false

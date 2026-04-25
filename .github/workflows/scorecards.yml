@@ -6,22 +6,24 @@ on:
   push:
     branches: ["main"]
 
-# Declare default permissions as read only
-permissions: read-all
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   analysis:
     name: Scorecard analysis
     runs-on: ubuntu-24.04
     permissions:
-      # Needed to upload the results to code-scanning dashboard
-      security-events: write
-      id-token: write
-      contents: read
-      actions: read
-      issues: read
-      pull-requests: read
-      checks: read
+      contents: read         # Required to clone the repo
+      security-events: write # Required to publish SARIF results to code scanning (codeql-action/upload-sarif)
+      id-token: write        # Required for OIDC verification when publishing (ossf/scorecard-action)
+      actions: read          # Required to read workflow metadata (ossf/scorecard-action)
+      issues: read           # Required for issue queries (ossf/scorecard-action)
+      pull-requests: read    # Required for the Branch-Protection check (ossf/scorecard-action)
+      checks: read           # Required for SAST detection checks (ossf/scorecard-action)
 
     steps:
       - name: Harden the runner
