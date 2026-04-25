@@ -15,7 +15,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up Go
-        run: .github/scripts/install-go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
       - name: go build darwin/arm64
         run: .github/scripts/go-build
         env:

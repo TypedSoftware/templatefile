@@ -11,7 +11,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Set up Go
-        run: .github/scripts/install-go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
       - name: go fmt
         run: |
           test -z "$(go fmt)"
