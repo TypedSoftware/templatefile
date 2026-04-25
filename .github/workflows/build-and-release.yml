@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: write     # Required by `gh release create` & read to clone the repo
-      id-token: write     # Required to mint a Sigstore OIDC token (actions/attest-build-provenance)
-      attestations: write # Required to upload the signed attestation (actions/attest-build-provenance)
+      id-token: write     # Required to mint a Sigstore OIDC token (actions/attest)
+      attestations: write # Required to upload the signed attestation (actions/attest)
     steps:
       - name: Harden the runner
         uses: step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40 # v2.19.0
@@ -42,7 +42,7 @@ jobs:
           GOOS: linux
           GOARCH: amd64
       - name: Generate signed build provenance attestations
-        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
+        uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
         with:
           subject-path: 'templatefile-${{ github.ref_name }}-*.tar.xz'
       - name: Create release
